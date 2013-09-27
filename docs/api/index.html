@@ -18,23 +18,26 @@
     <h2>Game List</h2>
     <p><strong>GET</strong></p>
     <p>/game/api/&lt;client_pk&gt;/games/</p>
-    <p>Get the list of all games for the given client pk</p>
+    <p>Get the list of all games for the given client pk - player list is essentially the same as the player list below</p>
     <h3>Sample Response</h3>
     <pre>[
    {
       "pk":1,
       "client_pk":1,
-      "name":"Game 1"
+      "name":"Game 1",
+      "players": []
    },
    {
       "pk":2,
       "client_pk":1,
-      "name":"Game 2"
+      "name":"Game 2",
+      "players": []
    },
    {
       "pk":3,
       "client_pk":1,
-      "name":"Game 3"
+      "name":"Game 3",
+      "players": []
    }
 ]</pre>
 
