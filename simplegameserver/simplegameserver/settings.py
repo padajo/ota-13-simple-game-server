@@ -155,3 +155,10 @@ LOGGING = {
         },
     }
 }
+
+# local settings, used mainly to override settings for development
+try:
+    from settings_local import *
+except ImportError:
+    sys.stderr.write("The file settings_local.py is missing.\n")
+    DEBUG = False
