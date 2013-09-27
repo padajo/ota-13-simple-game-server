@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Game Server API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>API<h1>
+
+    <h2>Game List</h2>
+    <p><strong>GET</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/</p>
+    <p>Get the list of all games for the given client pk</p>
+    <h3>Sample Response</h3>
+    <pre>[
+   {
+      "pk":1,
+      "client_pk":1,
+      "name":"Game 1"
+   },
+   {
+      "pk":2,
+      "client_pk":1,
+      "name":"Game 2"
+   },
+   {
+      "pk":3,
+      "client_pk":1,
+      "name":"Game 3"
+   }
+]</pre>
+
+    <h2>Player List</h2>
+    <p><strong>GET</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/</p>
+    <p>Get the list of all players for the given game pk</p>
+    <h3>Sample Response</h3>
+    <pre>[
+   {
+      "pk":2,
+      "game_pk":1,
+      "items":[
+         {
+            "player_pk":2,
+            "pk":1,
+            "amount":1234,
+            "name":"1234"
+         },
+         {
+            "player_pk":2,
+            "pk":2,
+            "amount":213,
+            "name":"gwrg"
+         }
+      ],
+      "name":"a",
+      "device_id":"12343"
+   },
+   {
+      "pk":3,
+      "game_pk":1,
+      "items":[
+
+      ],
+      "name":"a325",
+      "device_id":"1234343"
+   },
+   {
+      "pk":4,
+      "game_pk":1,
+      "items":[
+
+      ],
+      "name":"a32535",
+      "device_id":"12343432"
+   },
+   {
+      "pk":5,
+      "game_pk":1,
+      "items":[
+
+      ],
+      "name":"a325352",
+      "device_id":"5afe"
+   }
+]</pre>
+
+
+    <h2>Player Info</h2>
+    <p><strong>GET</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/</p>
+    <p>Get the details for the given user</p>
+    <h3>Sample Response</h3>
+    <pre>{
+   "pk":2,
+   "game_pk":1,
+   "items":[
+      {
+         "player_pk":2,
+         "pk":1,
+         "amount":1234,
+         "name":"1234"
+      },
+      {
+         "player_pk":2,
+         "pk":2,
+         "amount":213,
+         "name":"gwrg"
+      }
+   ],
+   "name":"a",
+   "device_id":"12343"
+}</pre>
+
+
+    <h2>Player Join</h2>
+    <p><strong>POST</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/add/</p>
+    <p>Variables: <em>name</em> - name of the user and <em>device_id</em> the unique device id</p>
+    <p>Add a user to the given game</p>
+    <h3>Sample Response</h3>
+    <pre>{
+   "pk":6,
+   "game_pk":1,
+   "items":[
+
+   ],
+   "name":"a3",
+   "device_id":"1234521"
+}</pre>
+
+    <h2>Player Remove</h2>
+    <p><strong>POST</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/delete/</p>
+    <p>Variables: <em>device_id</em> the unique device id</p>
+    <p>Remove a user to the given game</p>
+    <h3>Sample Response</h3>
+    <pre>{"success": true}</pre>
+
+
+    <h2>Player Item Add</h2>
+    <p><strong>POST</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/items/add</p>
+    <p>Variables: <em>name</em> of the item - <em>amount</em> amount of the item</p>
+    <p>Add an item to the player</p>
+    <h3>Sample Response</h3>
+    <p>This is the item information</p>
+    <pre>{"player_pk": 2, "pk": 4, "amount": "1", "name": "abc3"}</pre>
+
+
+    <h2>Player Item Update</h2>
+    <p><strong>POST</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/items/&lt;item_name&gt;/update</p>
+    <p>Variables: <em>amount</em> amount of the item</p>
+    <p>Update the specified item for the player</p>
+    <h3>Sample Response</h3>
+    <p>This is the item information</p>
+    <pre>{"success": true}</pre>
+
+
+    <h2>Player Item Delete</h2>
+    <p><strong>POST</strong></p>
+    <p>/game/api/&lt;client_pk&gt;/games/&lt;game_pk&gt;/players/&lt;player_pk&gt;/items/&lt;item_name&gt;/delete</p>
+    <p>Variables: <em>amount</em> amount of the item</p>
+    <p>Remove the specified item for the player</p>
+    <h3>Sample Response</h3>
+    <p>This is the item information</p>
+    <pre>{"success": true}</pre>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
