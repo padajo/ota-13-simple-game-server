@@ -24,7 +24,12 @@ class Game(TimeStampedModel):
     name = models.CharField(max_length=100, blank=False, null=False, unique=True)
 
     def to_object(self):
-        return {'pk':self.pk, 'name':self.name, 'client_pk':self.client_id}
+        
+        players = []
+        for player in self.player_set.all():
+            players.append(player.to_object())
+        
+        return {'pk':self.pk, 'name':self.name, 'client_pk':self.client_id, 'players': players}
 
 class Player(TimeStampedModel):
     game = models.ForeignKey(Game)
